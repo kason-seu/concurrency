@@ -1,4 +1,4 @@
-package com.kason.concurrency;
+package com.kason.concurrency.example.count;
 
 import com.kason.concurrency.annotations.NotThreadSafe;
 
@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
 
 
 @NotThreadSafe
-public class ConcurrencyTest {
+public class CountExample1 {
 
 
     public static final int clientTotal = 1000;

@@ -1,23 +1,26 @@
-package com.kason.concurrency;
+package com.kason.concurrency.example.count;
 
-import com.kason.concurrency.annotations.NotThreadSafe;
+import com.kason.concurrency.annotations.ThreadSafe;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
-
-@NotThreadSafe
-public class ConcurrencyTest {
+@Slf4j
+@ThreadSafe
+public class CountExample2 {
 
 
     public static final int clientTotal = 1000;
     public static final int threadTotal = 200;
 
-    private static int cnt = 0;
+    private static AtomicInteger atomicInteger = new AtomicInteger();
     private static void add() {
-        cnt ++;
+
+        atomicInteger.incrementAndGet();
     }
     public static void main(String[] args) {
 
@@ -53,7 +56,7 @@ public class ConcurrencyTest {
         }
         executorService.shutdown();
 
-        System.out.println(cnt);
+        log.info("after execute, count = {}", atomicInteger.get());
 
 
     }
